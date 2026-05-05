@@ -55,17 +55,18 @@
     document.querySelectorAll('.reveal').forEach(el => el.classList.add('is-in'));
   }
 
-  /* ---------- Design switcher ---------- */
+  /* ---------- Design switcher (subpath-aware) ---------- */
   const sw = document.querySelector('.design-switcher');
   if (sw) {
     const path = window.location.pathname;
     let file = path.split('/').filter(Boolean).pop() || 'index.html';
     if (!file.endsWith('.html')) file = 'index.html';
-    const m = path.match(/\/([1-5])\//);
-    const active = m ? m[1] : '0';
+    const m = path.match(/^(.*?)\/([1-5])\//);
+    const base = m ? m[1] : path.replace(/\/[^/]*$/, '').replace(/\/$/, '');
+    const active = m ? m[2] : '0';
     sw.querySelectorAll('a').forEach(a => {
       const n = a.dataset.design;
-      a.href = n === '0' ? `/${file}` : `/${n}/${file}`;
+      a.href = n === '0' ? `${base}/${file}` : `${base}/${n}/${file}`;
       if (n === active) a.classList.add('is-active');
     });
   }
