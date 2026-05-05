@@ -1540,6 +1540,61 @@ p {
 
 /* ── Print ── */
 @media print {
-  .site-header, .sticky-cta, .mobile-menu, .mobile-menu-overlay { display: none; }
+  .site-header, .sticky-cta, .mobile-menu, .mobile-menu-overlay, .design-switcher { display: none; }
   body { padding: 0; background: white; color: black; }
+}
+
+/* ── Design switcher (variant pill, top-right) ── */
+.design-switcher {
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  z-index: 9999;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 8px;
+  background: rgba(20, 20, 20, 0.92);
+  color: #fff;
+  border: 1px solid rgba(232, 130, 12, 0.55);
+  border-radius: 999px;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+.design-switcher .design-switcher-label {
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  margin-right: 4px;
+  padding-left: 4px;
+  font-size: 10px;
+}
+.design-switcher a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 26px;
+  height: 26px;
+  padding: 0 6px;
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.78);
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.design-switcher a:hover {
+  background: rgba(232, 130, 12, 0.15);
+  color: #fff;
+}
+.design-switcher a.is-active {
+  background: #e8820c;
+  color: #0a0a0a;
+}
+@media (max-width: 600px) {
+  .design-switcher { top: 8px; right: 8px; padding: 4px 6px; font-size: 11px; }
+  .design-switcher .design-switcher-label { display: none; }
+  .design-switcher a { min-width: 24px; height: 24px; padding: 0 4px; }
 }
